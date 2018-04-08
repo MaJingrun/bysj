@@ -22,12 +22,12 @@ def getNormalHost(filePath):
     
     return hosts
 
-def findLikeHost():
+def findLikeHost(filePath):
     """
         先找到所有的三级域，再 
         找到二级域名相同，三级域名相似的host，看看能不能合并
     """
-    hosts=getNormalHost()
+    hosts=getNormalHost(filePath)
     
     d={}
     for host in hosts:
