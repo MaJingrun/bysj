@@ -142,26 +142,21 @@ def GetSignature(tokenList):
     return signatureStr
 
 
-'''
-sampleList = ['GET /cgi-bin/micromsg-bin/newgetdns?uin=78095985&clientversion=369230865&scene=0&net=2&md5=12a67ac3286a1c91f963629df13bff8b&devicetype=iPhone+OS8.3&lan=zh_CN&sigver=1 HTTP/1.0',
-              'GET /cgi-bin/micromsg-bin/newgetdns?uin=725435700&clientversion=369230865&scene=0&net=2&md5=12a67ac3286a1c91f963629df13bff8b&devicetype=iPhone+OS9.0&lan=zh_CN&sigver=1 HTTP/1.0',
-              'GET /cgi-bin/micromsg-bin/newgetdns?uin=725435700&clientversion=369230865&scene=0&net=2&md5=12a67ac3286a1c91f963629df13bff8b&devicetype=iPhone+OS9.0&lan=zh_CN&sigver=1 HTTP/1.0',
-              'GET /cgi-bin/micromsg-bin/newgetdns?uin=1930644606&clientversion=369230865&scene=0&net=2&md5=12a67ac3286a1c91f963629df13bff8b&devicetype=iPhone+OS8.1.2&lan=zh_CN&sigver=1 HTTP/1.0',
-              'GET /cgi-bin/micromsg-bin/newgetdns?uin=780042721&clientversion=369230865&scene=0&net=2&md5=12a67ac3286a1c91f963629df13bff8b&devicetype=iPhone+OS8.4&lan=zh_CN&sigver=1 HTTP/1.0',
-              'GET /cgi-bin/micromsg-bin/newgetdns?uin=2415097960&clientversion=369230865&scene=0&net=2&md5=12a67ac3286a1c91f963629df13bff8b&devicetype=iPhone+OS8.2&lan=zh_CN&sigver=1 HTTP/1.0',
-              'GET /cgi-bin/micromsg-bin/newgetdns?uin=1555398863&clientversion=369230865&scene=0&net=2&md5=12a67ac3286a1c91f963629df13bff8b&devicetype=iPhone+OS8.3&lan=zh_CN&sigver=1 HTTP/1.0',
-              'GET /cgi-bin/micromsg-bin/newgetdns?uin=38758445&clientversion=369229843&scene=0&net=2&md5=12a67ac3286a1c91f963629df13bff8b&devicetype=iPhone+OS8.4&lan=zh_CN&sigver=1 HTTP/1.0',
-              'GET /cgi-bin/micromsg-bin/newgetdns?uin=42145705&clientversion=369230865&scene=0&net=2&md5=12a67ac3286a1c91f963629df13bff8b&devicetype=iPhone+OS8.1&lan=zh_CN&sigver=1 HTTP/1.0',
-              'GET /cgi-bin/micromsg-bin/newgetdns?uin=1464490864&clientversion=369230865&scene=0&net=2&md5=12a67ac3286a1c91f963629df13bff8b&devicetype=iPhone+OS8.1.3&lan=zh_CN&sigver=1 HTTP/1.0']
+
+sampleList = [  
+                'GET /o/ajax/log/?page=simple&fromcase=50xyz001&type=1&id=748&appid=52472048&apkid=66553501&chanabnelId=&r=0.5336161153480674 HTTP/1.1',
+                'GET /o/ajax/log/?callValue=||865626ab035149497||||4600782xyz66535578|||720|1280|OPPO|OPPO HTTP/1.1',
+                'GET /o/ajax/log/?page=simple&fromcase=500xyz01&type=1&id=744&appid=52472048&apkid=66553501&channabelId=&r=0.07101931124494154 HTTP/1.1'
+            ]
 tokenList = GetTokenList(sampleList)
 pprint(tokenList)
 print('---------------------------------------------------------------!')
 signature = GetSignature(tokenList)
 print(signature)
 
-m = re.match(signature, 'GET /cgi-bin/micromsg-bin/newgetdns?uin=1555398863&clientversion=369230865&scene=0&net=2&md5=12a67ac3286a1c91f963629df13bff8b&devicetype=iPhone+OS8.3&lan=zh_CN&sigver=1 HTTP/1.0')
+m = re.match(signature, 'GET /o/ajax/log/?callValue=||865626ab035149497||||4600782xyz66535578|||720|1280|OPPO|OPPO HTTP/1.1')
 if m:
     print('OK')
 else:
     print('NO')
-'''
+
