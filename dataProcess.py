@@ -4,20 +4,42 @@ import sys
 import os
 
 def reduceRequest(request):
+    requestPage=''
+    requestMethod=''
+
     splitBlank=request.split(' ')
-    requestPage=splitBlank[1]
-    parameters=''
+    temp=''.join(splitBlank)
+
+    requestMethod=splitBlank[0]
+    requestPage=temp.replace(requestMethod,'',1).replace('HTTP/1.1','')
+    
+    newParameters=''
     if '?' in requestPage:
         rs=requestPage.split('?')
-        pages=rs[0].split('/')
-        parameters='?'+rs[1]
+        page=rs[0]
+        pages=page.split('/')
+        t=''.join(rs)
+        p=t.replace(page,'')
+        #parameters='?'+rs[1]
+        newP='?'
+        parameters=p.split('&')
+        for parameter in parameters:
+            if parameter != '':
+                if '=' in parameter:
+                    kv=parameter.split('=')
+                    newP+='&'+kv[0]+'=(.*)'
+                else:
+                    newP+='&'+parameter+'(.*)'
+        newParameters=newP.replace('?&','?')
+
+
     else:
         pages=requestPage.split('/')
 
-    newR=splitBlank[0]+' '
+    newR=requestMethod+' '
     for i in range(len(pages)-1):
         newR=newR+pages[i]+'/'
-    newR=newR+parameters+' HTTP/1.1'
+    newR=newR+newParameters+' HTTP/1.1'
     return newR
 
 def getFileNames(filePath):
@@ -337,10 +359,19 @@ def main():
     request=getHostAndRequest(sampleList)
 
     reducedRequest={}
+    i=0
     for k in request.keys():
         reducedRequest[k]=[]
         for r in request[k]:
+            if len(r.split(' '))>3:
+                i+=1
+                if i%10000==0:
+                    print(r)
+                    print(reduceRequest(r))
+                    print(len(reduceRequest(r).split(' ')))
+                
             reducedRequest[k].append(reduceRequest(r))
+    print(i)
     
     ip,cdn,normal=classByHost(request.keys())
 
