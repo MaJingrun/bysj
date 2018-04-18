@@ -76,9 +76,9 @@ def OverallDistance(sampleA, sampleB):
     w3 = 0.045
     '''
     w0 = 10
-    w1 = 8
-    w2 = 3
-    w3 = 1
+    w1 = 6
+    w2 = 6
+    w3 = 0
     distance = w0 * d0 + w1 * d1 + w2 * d2 + w3 * d3
 
     return distance
