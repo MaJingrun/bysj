@@ -134,7 +134,7 @@ def main():
     core=int(sys.argv[3])
     count=int(sys.argv[4])
     method=sys.argv[5]
-    t=int(sys.argv[6])
+    t=float(sys.argv[6])
     criterion=sys.argv[7]
 
 
