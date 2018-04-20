@@ -70,6 +70,8 @@ def finalize(align1, align2):
     print(align1)
     print(symbol)
     print(align2)
+    return symbol
+    '''
     if sig!='':
         seq.append(sig)
     
@@ -81,6 +83,7 @@ def finalize(align1, align2):
         return s.replace('(.*)(.*)','(.*)')
     else:
         return ''
+    '''
     
 
 
