@@ -1,4 +1,11 @@
 #-*- coding:utf-8 -*-
+#
+#   数据处理阶段，将原始数据中对我们有用的数据提取出来
+#
+#
+#
+#
+#
 import re
 import sys
 import os
