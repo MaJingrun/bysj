@@ -37,7 +37,7 @@ def getSignature2(host,readPath,writePath,count):
                 
                 signature=st.GetSignature(tokens)
                 '''
-                
+                symbol=symbol.replace(' ','(.*)')
                 wildcard='(.*)?'
                 signature=''
                 signatureSplit=symbol.split('(.*)')
