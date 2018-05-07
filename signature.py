@@ -1,3 +1,11 @@
+#-*- coding:utf-8 -*-
+#
+# 指纹提取部分，将聚类后的请求按每一类提取一个指纹
+# 即，一个host可能对应多个指纹
+# 这跟一个host可能有多种格式的请求是相关的
+#
+#
+#
 import signatureTest as st
 import hostProcess as hp
 from multiprocessing import Pool
@@ -8,6 +16,10 @@ import time
 import sys
 
 def getSignature2(host,readPath,writePath,count):
+    '''
+    用smith waterman算法对请求进行序列比对，找到最合适的子序列，
+    经过加工，生成签名
+    '''
     
     sig=[]
     filePath=readPath+'/'+host+'/'

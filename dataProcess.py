@@ -11,6 +11,13 @@ import sys
 import os
 
 def reduceRequest(request):
+    '''
+        将http请求进行精简，去掉请求页面和参数值
+    '''
+    # 原始请求样例 GET /mobile/client/love/mpay.html?webviewopen=2358473901234 HTTP/1.1
+    # 精简后 GET /mobile/client/love/?webviewopen=(.*) HTTP/1.1
+    # 这样可以使计算量更小，聚类更加精确
+    
     requestPage=''
     requestMethod=''
 
@@ -61,7 +68,9 @@ def getFileNames(filePath):
 
 
 def getSampleList(filePath):
-    #依次读取每个文件，得到所有完整数据的样本
+    '''
+        依次读取每个文件，得到所有完整数据的样本
+    '''
     '''
         每个sample的组织样式是这样的
         [
