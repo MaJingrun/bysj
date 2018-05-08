@@ -74,8 +74,8 @@ def getSampleList(filePath):
     '''
         每个sample的组织样式是这样的
         [
-            2017-12-14 00:02:12.825 221.130.199.88 51895:80 6] busstype:007003000	url:http://openbox.mobilem.360.cn/GameFloatWindow/gameList?&ver=v2 	dir:1	http_header:,
-            POST /GameFloatWindow/gameList?&ver=v2 HTTP/1.1,
+            2017-12-14 00:02:12.825  51895:80 6] busstype:007003000	url:http://openbox.mobilem.360.cn/GameFloatWindow/gameList?&ver=v2 	dir:1	http_header:,
+            POST /GameFloatWindow/gameList?&ver=12 HTTP/1.1,
             Host: openbox.mobilem.360.cn,
             Connection: Keep-Alive,
             User-Agent: Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900H Build/KOT49H)
