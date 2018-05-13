@@ -167,7 +167,12 @@ def getTimeStamp(sample):
 
 def getHostAndRequest(samples):
     
-    d={}
+    '''
+    从样本中得到host字段和HTTP请求，以dict的方式存储
+    '''
+
+    d = {}
+    
     for sample in samples:
         host = getHost(sample)
         request = getRequest(sample)
@@ -181,6 +186,7 @@ def getHostAndRequest(samples):
     
     for host in d.keys():
         d[host]=list(set(d[host]))
+
         
     return d
 
@@ -364,6 +370,20 @@ def classByHost(hosts):
     return ip,cdn,normal
 
 
+def reduce(request):
+    reducedRequest={}
+    
+    for k in request.keys():
+        reducedRequest[k]=[]
+        for r in request[k]:
+            if len(r.split(' '))>3:
+                pass
+                
+            reducedRequest[k].append(reduceRequest(r))
+    
+    return reducedRequest
+    
+
 def main():
     
     readFilePath=sys.argv[1]
@@ -374,20 +394,7 @@ def main():
     
     request=getHostAndRequest(sampleList)
 
-    reducedRequest={}
-    i=0
-    for k in request.keys():
-        reducedRequest[k]=[]
-        for r in request[k]:
-            if len(r.split(' '))>3:
-                i+=1
-                if i%10000==0:
-                    print(r)
-                    print(reduceRequest(r))
-                    print(len(reduceRequest(r).split(' ')))
-                
-            reducedRequest[k].append(reduceRequest(r))
-    print(i)
+    reducedRequest = reduce(request)
     
     ip,cdn,normal=classByHost(request.keys())
 

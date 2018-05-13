@@ -73,10 +73,11 @@ def getSignature2(host,readPath,writePath,count):
         if len(sig)>0:
             
             filePath=writePath+'/'+host
-            with open(filePath,'w') as f:
+            with open(filePath,'wb') as f:
                 for s in sig:
+                    s=s.encode('utf-8')
                     f.write(s)
-                    f.write('\n')
+                    f.write('\n'.encode('utf-8'))
 
 def getSignature(host,readPath,writePath,count):
     
@@ -120,8 +121,10 @@ def getSignature(host,readPath,writePath,count):
                     f.write(s)
                     f.write('\n')
 
-def generateSignature(read,write,core,count):
-    hosts=hp.getNormalHost('result')
+def generateSignature(read,write,hostPath,core,count):
+    hosts=hp.getNormalHost(hostPath)
+
+    '''
 
     p=Pool(core)
     print(time.asctime( time.localtime(time.time()) )+' get signatures...')
@@ -132,14 +135,20 @@ def generateSignature(read,write,core,count):
     p.join()
     print(time.asctime( time.localtime(time.time()) )+' signature over...')
 
+    '''
+
+    for host in hosts:
+        getSignature2(host,read,write,count)
+
 def main():
     read=sys.argv[1]
     write=sys.argv[2]
-    core=int(sys.argv[3])
-    count=int(sys.argv[4])
+    hostPath=sys.argv[3]
+    core=int(sys.argv[4])
+    count=int(sys.argv[5])
     
 
-    generateSignature(read,write,core,count)
+    generateSignature(read,write,hostPath,core,count)
 
 if __name__ == '__main__':
     main()          

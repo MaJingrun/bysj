@@ -82,7 +82,7 @@ def getClusterInHost(host,requestPath,clusterPath,sampleNum,metho,t,cri):
     
     filePath=clusterPath+'/'+host+'/'
     if not os.path.exists(filePath):
-        os.mkdir(filePath)
+        os.makedirs(filePath)
     else:
         return
 
@@ -96,6 +96,7 @@ def getClusterInHost(host,requestPath,clusterPath,sampleNum,metho,t,cri):
     if len(sample)>sampleNum:
         dis=int(len(sample)/sampleNum)
         sample=sample[::dis]
+        requests=requests[::dis]
     
     
     #计算距离矩阵并进行层次聚类
@@ -138,8 +139,10 @@ def cluster(read,write,core,count,method,t,criterion):
     '''
     利用多进程进行聚类
     '''
+    
     hosts=getNormalHost(read)
 
+    '''
     #创建进程池进行多进程聚类，进程数视运行环境而定
     p=Pool(core)
     
@@ -150,6 +153,10 @@ def cluster(read,write,core,count,method,t,criterion):
     p.close()
     p.join()
     print(time.asctime( time.localtime(time.time()) )+' cluster over...')
+    '''
+    for host in hosts:
+        getClusterInHost(host,read,write,count,method,t,criterion)
+
 
 
 def main():
